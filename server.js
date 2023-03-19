@@ -22,15 +22,21 @@ bot.command("start", (ctx) => {
 });
 
 bot.on("text", async (ctx) => {
-  await bot.telegram.sendPhoto(
-    ctx.chat.id,
-    {
-      url: `https://singlecolorimage.com/get/33fd8f/800x800`,
-    },
-    {
-      caption: ctx.message,
-    }
-  );
+  const hexCodeRegex = /^#(?:[0-9a-fA-F]{6}){1,2}$/;
+  if (!hexCodeRegex.test(ctx.message)) {
+    bot.telegram.sendMessage("لطفا یک رنگ کد معتبر وارد کنید ");
+  } else {
+    const hexCode = ctx.message.text.substring(1, ctx.message.text.length);
+    await bot.telegram.sendPhoto(
+      ctx.chat.id,
+      {
+        url: `https://singlecolorimage.com/get/${hexCode}/800x800`,
+      },
+      {
+        caption: ctx.message,
+      }
+    );
+  }
 });
 
 bot.launch();

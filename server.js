@@ -26,16 +26,26 @@ bot.on("text", async (ctx) => {
   if (!hexCodeRegex.test(ctx.message)) {
     bot.telegram.sendMessage("لطفا یک رنگ کد معتبر وارد کنید ");
   } else {
-    const hexCode = ctx.message.text.substring(1, ctx.message.text.length);
-    await bot.telegram.sendPhoto(
-      ctx.chat.id,
-      {
-        url: `https://singlecolorimage.com/get/${hexCode}/800x800`,
-      },
-      {
-        caption: ctx.message,
-      }
-    );
+    try {
+      await bot.telegram.sendPhoto(
+        ctx.chat.id,
+        {
+          url: `https://singlecolorimage.com/get/${ctx.message.text.replace(
+            "#",
+            ""
+          )}/800x800`,
+        },
+        {
+          caption: ctx.message,
+        }
+      );
+    } catch (error) {
+      bot.telegram.sendMessage(
+        ctx.chat.id,
+        "خطایی وجود داره!" + String(error),
+        {}
+      );
+    }
   }
 });
 

@@ -39,5 +39,8 @@ bot.on("text", async (ctx) => {
     );
   }
 });
-
-bot.launch();
+bot.launch({
+  webhook: {
+    domain: `https://telegram-hex-code-picture-bot.vercel.app/`,
+  },
+});

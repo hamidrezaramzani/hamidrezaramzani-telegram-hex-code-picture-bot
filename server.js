@@ -19,9 +19,13 @@ bot.command("start", (ctx) => {
   console.log(ctx.from);
   bot.telegram.sendMessage(
     ctx.chat.id,
-    "Hello there! Welcome to the Code Capsules telegram bot.\nI respond to /ethereum. Please try it",
+    "سلام! به ربات تصویر رنگ هکس کد خوش اومدی. اینجا یه هکس کد بده رنگشو بهت بدم!",
     {}
   );
+});
+
+bot.on("text", (ctx) => {
+  bot.telegram.sendMessage(ctx.chat.id, ctx.message, {});
 });
 
 bot.launch();

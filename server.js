@@ -5,12 +5,16 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 expressApp.use(express.static("static"));
 expressApp.use(express.json());
+const app = express();
 require("dotenv").config();
 
 const { Telegraf } = require("telegraf");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 bot.command("start", (ctx) => {
   console.log(ctx.from);
   bot.telegram.sendMessage(

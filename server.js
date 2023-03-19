@@ -30,27 +30,18 @@ bot.on("text", async (ctx) => {
       {}
     );
   } else {
-    bot.telegram.sendMessage(ctx.chat.id, ctx.message.text, {});
-    // try {
-    //   await bot.telegram.sendPhoto(
-    //     ctx.chat.id,
-    //     {
-    //       url: `https://singlecolorimage.com/get/${ctx.message.text.replace(
-    //         "#",
-    //         ""
-    //       )}/800x800`,
-    //     },
-    //     {
-    //       caption: ctx.message,
-    //     }
-    //   );
-    // } catch (error) {
-    //   bot.telegram.sendMessage(
-    //     ctx.chat.id,
-    //     "خطایی وجود داره!" + String(error),
-    //     {}
-    //   );
-    // }
+    await bot.telegram.sendPhoto(
+      ctx.chat.id,
+      {
+        url: `https://singlecolorimage.com/get/${ctx.message.text.replace(
+          "#",
+          ""
+        )}/800x800`,
+      },
+      {
+        caption: ctx.message,
+      }
+    );
   }
 });
 

@@ -41,4 +41,3 @@ bot.on("text", async (ctx) => {
 });
 
 bot.launch();
-module.exports = () => {};

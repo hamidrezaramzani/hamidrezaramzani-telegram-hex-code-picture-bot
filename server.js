@@ -12,9 +12,6 @@ const { Telegraf } = require("telegraf");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
 bot.command("start", (ctx) => {
   console.log(ctx.from);
   bot.telegram.sendMessage(
@@ -25,13 +22,9 @@ bot.command("start", (ctx) => {
 });
 
 bot.on("text", (ctx) => {
-  bot.telegram.sendMessage(
-    ctx.chat.id,
-    ctx.sendPhoto({
-      source: `https://singlecolorimage.com/get/33fd8f/400x100`,
-    }),
-    {}
-  );
+  bot.telegram.sendPhoto(ctx.chat.id, {
+    source: "https://singlecolorimage.com/get/33fd8f/800x800",
+  });
 });
 
 bot.launch();

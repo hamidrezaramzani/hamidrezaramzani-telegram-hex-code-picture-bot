@@ -1,6 +1,6 @@
 const express = require("express");
 const expressApp = express();
-const axios = require("axios");
+const fs = require("fs");
 const path = require("path");
 const port = process.env.PORT || 3000;
 expressApp.use(express.static("static"));
@@ -23,7 +23,9 @@ bot.command("start", (ctx) => {
 
 bot.on("text", (ctx) => {
   bot.telegram.sendPhoto(ctx.chat.id, {
-    source: "https://singlecolorimage.com/get/33fd8f/800x800",
+    source: fs.createReadStream(
+      "https://singlecolorimage.com/get/33fd8f/800x800"
+    ),
   });
 });
 

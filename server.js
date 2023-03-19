@@ -21,12 +21,16 @@ bot.command("start", (ctx) => {
   );
 });
 
-bot.on("text", (ctx) => {
-  bot.telegram.sendPhoto(ctx.chat.id, {
-    source: fs.createReadStream(
-      "https://singlecolorimage.com/get/33fd8f/800x800"
-    ),
-  });
+bot.on("text", async (ctx) => {
+  await bot.telegram.sendPhoto(
+    ctx.chat.id,
+    {
+      url: `https://singlecolorimage.com/get/33fd8f/800x800`,
+    },
+    {
+      caption: ctx.message,
+    }
+  );
 });
 
 bot.launch();

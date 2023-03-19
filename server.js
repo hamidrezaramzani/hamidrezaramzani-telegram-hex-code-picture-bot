@@ -27,9 +27,9 @@ bot.command("start", (ctx) => {
 bot.on("text", (ctx) => {
   bot.telegram.sendMessage(
     ctx.chat.id,
-    ctx.replyWithPhoto(
-      `https://singlecolorimage.com/get/${ctx.message}/400x100`
-    ),
+    ctx.sendPhoto({
+      source: `https://singlecolorimage.com/get/33fd8f/400x100`,
+    }),
     {}
   );
 });

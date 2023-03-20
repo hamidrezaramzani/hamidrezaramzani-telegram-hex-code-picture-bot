@@ -17,7 +17,7 @@ bot.command("start", (ctx) => {
 });
 
 bot.on("text", async (ctx) => {
-  const hexCodeRegex = /^#(?:[0-9a-fA-F]{6}){1,2}$/;
+  const hexCodeRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
   if (!hexCodeRegex.test(ctx.message.text.trim())) {
     bot.telegram.sendMessage(
       ctx.chat.id,
@@ -25,13 +25,20 @@ bot.on("text", async (ctx) => {
       {}
     );
   } else {
+    const hexCode = ctx.message.text.replace("#", "");
+    let finalHexCode = hexCode;
+    if (hexCode.length === 3) {
+      let seperatedHexCode = hexCode.split("");
+      let finalHexCodeString = "";
+      seperatedHexCode.forEach((letter) => {
+        finalHexCodeString += letter + letter;
+      });
+      finalHexCode = finalHexCodeString;
+    }
     await bot.telegram.sendPhoto(
       ctx.chat.id,
       {
-        url: `https://singlecolorimage.com/get/${ctx.message.text.replace(
-          "#",
-          ""
-        )}/800x800`,
+        url: `https://singlecolorimage.com/get/${finalHexCode}/800x800`,
       },
       {
         caption: ctx.message,
